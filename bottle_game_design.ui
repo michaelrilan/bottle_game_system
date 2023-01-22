@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>624</width>
-    <height>450</height>
+    <height>453</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -122,7 +122,7 @@ font: 75 10pt &quot;Tahoma&quot;;
 </string>
      </property>
      <property name="text">
-      <string>Bottle 1 (Easy)</string>
+      <string>Bottle 1 (Easy-1 Point)</string>
      </property>
      <property name="icon">
       <iconset>
@@ -157,7 +157,7 @@ font: 75 10pt &quot;Tahoma&quot;;
 </string>
      </property>
      <property name="text">
-      <string>Bottle 2 (Average)</string>
+      <string>Bottle 2 (Average-2 Pts)</string>
      </property>
      <property name="icon">
       <iconset>
@@ -192,7 +192,7 @@ font: 75 10pt &quot;Tahoma&quot;;
 </string>
      </property>
      <property name="text">
-      <string>Bottle 3 (Hard)</string>
+      <string>Bottle 3 (Hard-3 Pts.)</string>
      </property>
      <property name="icon">
       <iconset>
@@ -496,7 +496,7 @@ background-color: rgba(0, 0, 0,0);</string>
 color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
-      <string>Cancel</string>
+      <string>Restart</string>
      </property>
     </widget>
     <widget class="QPushButton" name="btn_next_question">

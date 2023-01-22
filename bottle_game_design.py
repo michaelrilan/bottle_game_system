@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:\Users\admin\Desktop\bottle_guessing_game\bottle_game_design.ui'
+# Form implementation generated from reading ui file 'C:\Users\admin\Desktop\bottle_guessing_game\bottle_game_system\bottle_game_design.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.7
 #
@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(624, 450)
+        MainWindow.resize(624, 453)
         MainWindow.setTabShape(QtWidgets.QTabWidget.Rounded)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -53,7 +53,7 @@ class Ui_MainWindow(object):
 "font: 75 10pt \"Tahoma\";\n"
 "")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("C:\\Users\\admin\\Desktop\\bottle_guessing_game\\bottle_question_mark.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("C:\\Users\\admin\\Desktop\\bottle_guessing_game\\bottle_game_system\\bottle_question_mark.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_easy.setIcon(icon)
         self.btn_easy.setIconSize(QtCore.QSize(30, 30))
         self.btn_easy.setObjectName("btn_easy")
@@ -88,28 +88,28 @@ class Ui_MainWindow(object):
 "\n"
 "color: rgb(255, 255, 255);")
         self.label_18.setObjectName("label_18")
-        self.frame_2 = QtWidgets.QFrame(self.centralwidget)
-        self.frame_2.setGeometry(QtCore.QRect(0, 0, 631, 451))
-        self.frame_2.setStyleSheet("background-color: rgb(255, 255, 255);")
-        self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_2.setObjectName("frame_2")
-        self.lbl_question_number = QtWidgets.QLabel(self.frame_2)
+        self.main_frame = QtWidgets.QFrame(self.centralwidget)
+        self.main_frame.setGeometry(QtCore.QRect(0, 0, 631, 451))
+        self.main_frame.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.main_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.main_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.main_frame.setObjectName("main_frame")
+        self.lbl_question_number = QtWidgets.QLabel(self.main_frame)
         self.lbl_question_number.setGeometry(QtCore.QRect(190, 70, 231, 41))
         self.lbl_question_number.setStyleSheet("font: 14pt  \"Tahoma\";\n"
 "color: rgb(0, 0, 0);")
         self.lbl_question_number.setObjectName("lbl_question_number")
-        self.lbl_score = QtWidgets.QLabel(self.frame_2)
+        self.lbl_score = QtWidgets.QLabel(self.main_frame)
         self.lbl_score.setGeometry(QtCore.QRect(480, 70, 131, 41))
         self.lbl_score.setStyleSheet("font: 14pt  \"Tahoma\";\n"
 "color: rgb(0, 0, 0);")
         self.lbl_score.setObjectName("lbl_score")
-        self.txtedit_question = QtWidgets.QTextEdit(self.frame_2)
+        self.txtedit_question = QtWidgets.QTextEdit(self.main_frame)
         self.txtedit_question.setGeometry(QtCore.QRect(210, 150, 371, 81))
         self.txtedit_question.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.ArrowCursor))
         self.txtedit_question.setReadOnly(True)
         self.txtedit_question.setObjectName("txtedit_question")
-        self.frame_choose = QtWidgets.QFrame(self.frame_2)
+        self.frame_choose = QtWidgets.QFrame(self.main_frame)
         self.frame_choose.setGeometry(QtCore.QRect(210, 240, 371, 121))
         self.frame_choose.setStyleSheet("#frame_choose{\n"
 "background-color: rgba(181, 181, 181,100);\n"
@@ -140,7 +140,7 @@ class Ui_MainWindow(object):
         self.btn_next.setStyleSheet("background-color: rgb(25, 128, 217);\n"
 "color: rgb(255, 255, 255);")
         self.btn_next.setObjectName("btn_next")
-        self.frame_4 = QtWidgets.QFrame(self.frame_2)
+        self.frame_4 = QtWidgets.QFrame(self.main_frame)
         self.frame_4.setGeometry(QtCore.QRect(0, 380, 631, 61))
         self.frame_4.setStyleSheet("background-color: rgba(255, 0, 4, 100);")
         self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -158,20 +158,20 @@ class Ui_MainWindow(object):
 "color: rgb(0, 0, 0);\n"
 "background-color: rgba(0, 0, 0,0);")
         self.lbl_answer2.setObjectName("lbl_answer2")
-        self.btn_cancel = QtWidgets.QPushButton(self.frame_2)
+        self.btn_cancel = QtWidgets.QPushButton(self.main_frame)
         self.btn_cancel.setGeometry(QtCore.QRect(360, 120, 101, 23))
         self.btn_cancel.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_cancel.setStyleSheet("background-color: rgb(225, 42, 42);\n"
 "color: rgb(255, 255, 255);")
         self.btn_cancel.setObjectName("btn_cancel")
-        self.btn_next_question = QtWidgets.QPushButton(self.frame_2)
+        self.btn_next_question = QtWidgets.QPushButton(self.main_frame)
         self.btn_next_question.setGeometry(QtCore.QRect(470, 120, 101, 23))
         self.btn_next_question.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_next_question.setStyleSheet("background-color: rgb(25, 128, 217);\n"
 "color: rgb(255, 255, 255);\n"
 "")
         self.btn_next_question.setObjectName("btn_next_question")
-        self.frame_correct = QtWidgets.QFrame(self.frame_2)
+        self.frame_correct = QtWidgets.QFrame(self.main_frame)
         self.frame_correct.setGeometry(QtCore.QRect(0, 380, 631, 61))
         self.frame_correct.setStyleSheet("background-color: rgba(0, 116, 85, 100);")
         self.frame_correct.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -189,7 +189,7 @@ class Ui_MainWindow(object):
 "color: rgb(0, 0, 0);\n"
 "background-color: rgba(0, 0, 0,0);")
         self.lbl_answer1.setObjectName("lbl_answer1")
-        self.frame_choose_3 = QtWidgets.QFrame(self.frame_2)
+        self.frame_choose_3 = QtWidgets.QFrame(self.main_frame)
         self.frame_choose_3.setGeometry(QtCore.QRect(0, 0, 631, 61))
         self.frame_choose_3.setStyleSheet("background-color: rgb(236, 236, 236);")
         self.frame_choose_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -208,7 +208,7 @@ class Ui_MainWindow(object):
 "font: 75 10pt \"Tahoma\";\n"
 "")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("C:\\Users\\admin\\Desktop\\bottle_guessing_game\\exit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("C:\\Users\\admin\\Desktop\\bottle_guessing_game\\bottle_game_system\\exit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_exit.setIcon(icon1)
         self.btn_exit.setIconSize(QtCore.QSize(25, 25))
         self.btn_exit.setObjectName("btn_exit")
@@ -221,7 +221,7 @@ class Ui_MainWindow(object):
         self.btn_cancel.raise_()
         self.btn_next_question.raise_()
         self.frame_correct.raise_()
-        self.frame_2.raise_()
+        self.main_frame.raise_()
         self.frame.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -235,11 +235,11 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "GUESSING"))
         self.label_3.setText(_translate("MainWindow", "GAME"))
         self.btn_easy.setToolTip(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#4f4f4f;\">Click for an easy mode questions</span></p></body></html>"))
-        self.btn_easy.setText(_translate("MainWindow", "Bottle 1 (Easy)"))
+        self.btn_easy.setText(_translate("MainWindow", "Bottle 1 (Easy-1 Pt)"))
         self.btn_average.setToolTip(_translate("MainWindow", "Click for an average mode questions"))
-        self.btn_average.setText(_translate("MainWindow", "Bottle 2 (Average)"))
+        self.btn_average.setText(_translate("MainWindow", "Bottle 2 (Average-2 Pts)"))
         self.btn_hard.setToolTip(_translate("MainWindow", "Click for an hard mode questions"))
-        self.btn_hard.setText(_translate("MainWindow", "Bottle 3 (Hard)"))
+        self.btn_hard.setText(_translate("MainWindow", "Bottle 3 (Hard-3 Pts.)"))
         self.label_18.setText(_translate("MainWindow", "Choose difficulty to Start"))
         self.lbl_question_number.setText(_translate("MainWindow", "QUESTION NUMBER: "))
         self.lbl_score.setText(_translate("MainWindow", "SCORE:"))
@@ -260,7 +260,7 @@ class Ui_MainWindow(object):
         self.label_14.setText(_translate("MainWindow", "Wrong!"))
         self.lbl_answer2.setText(_translate("MainWindow", "Answer: lbl_answer2"))
         self.btn_cancel.setToolTip(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#4f4f4f;\">cancel mode</span></p></body></html>"))
-        self.btn_cancel.setText(_translate("MainWindow", "Cancel"))
+        self.btn_cancel.setText(_translate("MainWindow", "Restart"))
         self.btn_next_question.setToolTip(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#4f4f4f;\">next question/pass</span></p></body></html>"))
         self.btn_next_question.setText(_translate("MainWindow", "Next Question"))
         self.label_16.setText(_translate("MainWindow", "Correct!"))

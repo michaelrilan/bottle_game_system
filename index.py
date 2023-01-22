@@ -9,6 +9,8 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import QTimer
 import sys
 import os
+
+from collections import deque
 class newWindow1(Ui_MainWindow,QtWidgets.QMainWindow):
     def __init__(self):
         super(newWindow1, self).__init__()
@@ -20,7 +22,10 @@ class newWindow1(Ui_MainWindow,QtWidgets.QMainWindow):
         self.btn_cancel.hide()
         self.btn_next_question.hide()
         self.lbl_mode.setText("MODE:")
+        
         self.setFixedSize(631, 451)
+
+
         self.mlist_easy = [
             ["How many planets in solar system?","nine"],
             ["Who is the 17th President in Philippines?","Ferdinand Bongbong Marcos Jr"],
@@ -35,7 +40,7 @@ class newWindow1(Ui_MainWindow,QtWidgets.QMainWindow):
             ["What is a group of crows called?","Murder"],
             ["How many dots appear on a pair of dice?","42"],
             ["Which is the only body part that is fully grown from birth?","Eyeball"],
-            ["What is acrophobia a fear of?","intense fear of heights"],
+            ["What is acrophobia a fear of?","Intense fear of heights"],
             ["How many minutes are in a full week?","10,080"],
             ["Sino ang pambansang bayani ng Pilipinas?","Jose Rizal"],
             ["Sino ang ama ng rebolusyon?","Andres Bonifacio"],
@@ -116,6 +121,8 @@ class newWindow1(Ui_MainWindow,QtWidgets.QMainWindow):
              ]
         
 
+
+
         self.mlist_hard = [
             ["What is the smallest planet in our solar system?","Mercury"],
             ["What was the name of the first man-made satellite launched by the Soviet Union in 1957?","Sputnik"],
@@ -154,7 +161,7 @@ class newWindow1(Ui_MainWindow,QtWidgets.QMainWindow):
             ["Eighteen","Nineteen","Twenty"],
             ["Dodeca","Undec-","Deka"],
             ["Twelve sides","Thirteen sides","Fourteen sides"],
-            ["Octhothorpe","Octothorpe","Octothorp"],
+            ["Octhothorpe","Octothorpe","Octtothorpe"],
             ["Chinese","Japanese","Thai"],
             ["21 years old","22 years old","23 years old"],
             ["Sigmund Freud","René Descartes","Saint Thomas Aquinas"],
@@ -162,9 +169,344 @@ class newWindow1(Ui_MainWindow,QtWidgets.QMainWindow):
         ]
         
         self.mode = ""
-        self.qstn_number = ""
+        self.qstn_number = 0
+        self.score = 0
+        self.answered_mode = []
+        self.selected_ans = ""
+
+        #passing functions in every/widgets
+        self.btn_easy.clicked.connect(self.btn_easy_func)
+        self.btn_average.clicked.connect(self.btn_average_func)
+        self.btn_hard.clicked.connect(self.btn_hard_func)
+
+
+        self.btn_exit.clicked.connect(self.exit_game)
+        self.chs_1.toggled.connect(self.chs_1_selected)
+        self.chs_2.toggled.connect(self.chs_2_selected)
+        self.chs_3.toggled.connect(self.chs_3_selected)
+        self.btn_cancel.clicked.connect(self.cancel_mod)
+        self.btn_next.clicked.connect(self.btn_next_func)
+        self.btn_next_question.clicked.connect(self.btn_next_question_func)
+
+    def btn_next_question_func(self):
+        self.btn_next_question.hide()
+        self.btn_next.hide()
+        self.frame_4.hide()
+        self.frame_correct.hide()
+        self.chs_1.setDisabled(False)
+        self.chs_2.setDisabled(False)
+        self.chs_3.setDisabled(False)
+        self.btn_next.setDisabled(False)
+        self.chs_1.setAutoExclusive(False)
+        self.chs_2.setAutoExclusive(False)
+        self.chs_3.setAutoExclusive(False)
+        self.chs_1.setChecked(False)
+        self.chs_2.setChecked(False)
+        self.chs_3.setChecked(False)
+
+        if(self.mode == "EASY"):
+            #if all the questions are displayed
+            
+            if(self.qstn_number == 20):
+                self.answered_mode.append("EASY")
+                
+                if(len(self.answered_mode) != 3):
+                    
+                    ret = QMessageBox.question(self, 'Easy Mode Done!', "Do you want to continue onto the next mode?",
+                                   QMessageBox.Yes | QMessageBox.No)
+                    
+                    if ret == QMessageBox.Yes:
+                       
+                        self.btn_easy.hide()
+                        if("AVERAGE" not in self.answered_mode):
+                            self.btn_average.show()
+                        else:
+                            self.btn_average.hide()
+                        if("HARD" not in self.answered_mode):
+                            self.btn_hard.show()
+                        else:
+                            self.btn_hard.hide()
+                        self.mode = ""
+                        self.selected_ans = ""
+                        self.qstn_number = 0
+                        self.frame_correct.hide()
+                        self.frame_4.hide()
+                        self.frame_choose.hide()
+                        self.txtedit_question.hide()
+                        self.btn_cancel.hide()
+                        self.btn_next_question.hide()
+                        self.lbl_mode.setText("MODE:")
+                    elif ret == QMessageBox.No:
+                        QMessageBox.about(self, "Thank You for Playing", "Overall Score: " + str(self.score))
+                elif(len(self.answered_mode) == 3):
+                     QMessageBox.about(self, "Conratulations", "Overall Score: " + str(self.score))
+            else:
+                self.selected_ans = ""
+                self.qstn_number += 1
+                self.lbl_question_number.setText("QUESTION NUMBER: " + str(self.qstn_number))
+                self.txtedit_question.setText(self.mlist_easy[self.qstn_number-1][0])
+                self.chs_1.setText(self.easy_choices[self.qstn_number-1][0])
+                self.chs_2.setText(self.easy_choices[self.qstn_number-1][1])
+                self.chs_3.setText(self.easy_choices[self.qstn_number-1][2])
+        elif(self.mode == "AVERAGE"):
+            #if all the questions are displayed
+            
+            if(self.qstn_number == 20):
+                self.answered_mode.append("AVERAGE")
+                if(len(self.answered_mode) != 3):
+                    
+                    ret = QMessageBox.question(self, 'Average Mode Done!', "Do you want to continue onto the next mode?",
+                                   QMessageBox.Yes | QMessageBox.No)
+                    
+                    if ret == QMessageBox.Yes:
+                        
+                        self.btn_average.hide()
+                        if("EASY" not in self.answered_mode):
+                            self.btn_easy.show()
+                        else:
+                            self.btn_easy.hide()
+                        if("HARD" not in self.answered_mode):
+                            self.btn_hard.show()
+                        else:
+                            self.btn_hard.hide()
+                        self.mode = ""
+                        self.selected_ans = ""
+                        self.qstn_number = 0
+                        self.frame_correct.hide()
+                        self.frame_4.hide()
+                        self.frame_choose.hide()
+                        self.txtedit_question.hide()
+                        self.btn_cancel.hide()
+                        self.btn_next_question.hide()
+                        self.lbl_mode.setText("MODE:")
+                    elif ret == QMessageBox.No:
+                        QMessageBox.about(self, "Thank You for Playing", "Overall Score: " + str(self.score))
+                elif(len(self.answered_mode) == 3):
+                     QMessageBox.about(self, "Conratulations", "Overall Score: " + str(self.score))
+                            
+            
+            else:
+                self.selected_ans = ""
+                self.qstn_number += 1
+                self.lbl_question_number.setText("QUESTION NUMBER: " + str(self.qstn_number))
+                self.txtedit_question.setText(self.mlist_average[self.qstn_number-1][0])
+                self.chs_1.setText(self.average_choices[self.qstn_number-1][0])
+                self.chs_2.setText(self.average_choices[self.qstn_number-1][1])
+                self.chs_3.setText(self.average_choices[self.qstn_number-1][2])
         
+        elif(self.mode == "HARD"):
+            #if all the questions are displayed
+            if(self.qstn_number == 20):
+                self.answered_mode.append("HARD")
+                if(len(self.answered_mode) != 3):
+                    
+                    ret = QMessageBox.question(self, 'Hard Mode Done!', "Do you want to continue onto the next mode?",
+                                   QMessageBox.Yes | QMessageBox.No)
+                    if ret == QMessageBox.Yes:
+                        
+                        self.btn_hard.hide()
+                        if("EASY" not in self.answered_mode):
+                            self.btn_easy.show()
+                        else:
+                            self.btn_easy.hide()
+                        if("AVERAGE" not in self.answered_mode):
+                            self.btn_average.show()
+                        else:
+                            self.btn_average.hide()
+                        self.mode = ""
+                        self.selected_ans = ""
+                        self.qstn_number = 0
+                        self.frame_correct.hide()
+                        self.frame_4.hide()
+                        self.frame_choose.hide()
+                        self.txtedit_question.hide()
+                        self.btn_cancel.hide()
+                        self.btn_next_question.hide()
+                        self.lbl_mode.setText("MODE:")
+                    elif ret == QMessageBox.No:
+                        QMessageBox.about(self, "Thank You for Playing", "Overall Score: " + str(self.score))
+                        exit()
+                elif(len(self.answered_mode) == 3):
+                     QMessageBox.about(self, "Conratulations", "Overall Score: " + str(self.score))
+                     exit()
+                            
+            
+            else:
+                self.selected_ans = ""
+                self.qstn_number += 1
+                self.lbl_question_number.setText("QUESTION NUMBER: " + str(self.qstn_number))
+                self.txtedit_question.setText(self.mlist_hard[self.qstn_number-1][0])
+                self.chs_1.setText(self.hard_choices[self.qstn_number-1][0])
+                self.chs_2.setText(self.hard_choices[self.qstn_number-1][1])
+                self.chs_3.setText(self.hard_choices[self.qstn_number-1][2])
+
+
+    def btn_next_func(self):
+        self.btn_next_question.show()
+        self.chs_1.setDisabled(True)
+        self.chs_2.setDisabled(True)
+        self.chs_3.setDisabled(True)
+        self.btn_next.setDisabled(True)
+        if(self.mode == "EASY"):
+            get_correct_ans = self.mlist_easy[self.qstn_number-1][1]
+            print(str(get_correct_ans) + "asdf")
+            if(get_correct_ans == self.selected_ans):
+                self.frame_correct.show()
+                self.frame_4.hide()
+                self.lbl_answer1.setText("Answer:" + get_correct_ans)
+                self.score = self.score+1
+                self.lbl_score.setText("SCORE: " + str(self.score))
+            else:
+                self.frame_correct.hide()
+                self.frame_4.show()
+                self.lbl_answer2.setText("Answer:" + get_correct_ans)
+        elif(self.mode == "AVERAGE"):
+            
+            get_correct_ans = self.mlist_average[self.qstn_number-1][1]
+            print(str(get_correct_ans) + "asdf")
+            if(get_correct_ans == self.selected_ans):
+                self.frame_correct.show()
+                self.frame_4.hide()
+                self.lbl_answer1.setText("Answer:" + get_correct_ans)
+                self.score = self.score+2
+                self.lbl_score.setText("SCORE: " + str(self.score))
+            else:
+                self.frame_correct.hide()
+                self.frame_4.show()
+                self.lbl_answer2.setText("Answer:" + get_correct_ans)
+
+        elif(self.mode == "HARD"):
+            
+            get_correct_ans = self.mlist_hard[self.qstn_number-1][1]
+            if(get_correct_ans == self.selected_ans):
+                self.frame_correct.show()
+                self.frame_4.hide()
+                self.lbl_answer1.setText("Answer:" + get_correct_ans)
+                self.score = self.score+3
+                self.lbl_score.setText("SCORE: " + str(self.score))
+            else:
+                self.frame_correct.hide()
+                self.frame_4.show()
+                self.lbl_answer2.setText("Answer:" + get_correct_ans)
+                
         
+
+    def exit_game(self):
+        ret = QMessageBox.question(self, 'Exit Game?', "Are you sure you want to Exit the Game?",
+                                   QMessageBox.Yes | QMessageBox.No)
+
+        if ret == QMessageBox.Yes:
+            exit()
+
+
+
+    def btn_easy_func(self):
+        if(self.mode == ""):
+            self.btn_average.hide()
+            self.btn_next_question.hide()
+            self.btn_hard.hide()
+            self.frame_choose.show()
+            self.txtedit_question.show()
+            self.btn_cancel.show()
+            self.mode = "EASY"
+            self.btn_next.hide()
+            self.lbl_mode.setText("MODE: " + self.mode)
+            self.lbl_score.setText("SCORE: " + str(self.score))
+            self.qstn_number = 0
+            self.qstn_number += 1
+            self.lbl_question_number.setText("QUESTION NUMBER: " + str(self.qstn_number))
+            self.txtedit_question.setText(self.mlist_easy[0][0])
+            self.chs_1.setText(self.easy_choices[0][0])
+            self.chs_2.setText(self.easy_choices[0][1])
+            self.chs_3.setText(self.easy_choices[0][2])
+
+    def btn_average_func(self):
+        if(self.mode == ""):
+            self.btn_next_question.hide()
+            self.btn_easy.hide()
+            self.btn_hard.hide()
+            self.frame_choose.show()
+            self.txtedit_question.show()
+            self.btn_cancel.show()
+            self.mode = "AVERAGE"
+            self.btn_next.hide()
+            self.lbl_mode.setText("MODE: " + self.mode)
+            self.lbl_score.setText("SCORE: " + str(self.score))
+            self.qstn_number = 0
+            self.qstn_number += 1
+            self.lbl_question_number.setText("QUESTION NUMBER: " + str(self.qstn_number))
+            self.txtedit_question.setText(self.mlist_average[0][0])
+            self.chs_1.setText(self.average_choices[0][0])
+            self.chs_2.setText(self.average_choices[0][1])
+            self.chs_3.setText(self.average_choices[0][2])
+
+    def btn_hard_func(self):
+        if(self.mode == ""):
+            self.btn_next_question.hide()
+            self.btn_easy.hide()
+            self.btn_average.hide()
+            self.frame_choose.show()
+            self.txtedit_question.show()
+            self.btn_cancel.show()
+            self.mode = "HARD"
+            self.btn_next.hide()
+            self.lbl_mode.setText("MODE: " + self.mode)
+            self.lbl_score.setText("SCORE: " + str(self.score))
+            self.qstn_number = 0
+            self.qstn_number += 1
+            self.lbl_question_number.setText("QUESTION NUMBER: " + str(self.qstn_number))
+            self.txtedit_question.setText(self.mlist_hard[0][0])
+            self.chs_1.setText(self.hard_choices[0][0])
+            self.chs_2.setText(self.hard_choices[0][1])
+            self.chs_3.setText(self.hard_choices[0][2])
+
+
+    def chs_1_selected(self, selected):
+        if selected:
+            self.chs_2.setChecked(False)
+            self.chs_3.setChecked(False)
+            self.selected_ans = self.chs_1.text()
+            print(self.selected_ans)
+            self.btn_next.show()
+
+    def chs_2_selected(self, selected):
+        if selected:
+            self.chs_1.setChecked(False)
+            self.chs_3.setChecked(False)
+            self.selected_ans = self.chs_2.text()
+            print(self.selected_ans)
+            self.btn_next.show()
+
+    def chs_3_selected(self, selected):
+        if selected:
+            self.chs_1.setChecked(False)
+            self.chs_2.setChecked(False)
+            self.selected_ans = self.chs_3.text()
+            print(self.selected_ans)
+            self.btn_next.show()
+    
+    def cancel_mod(self):
+        ret = QMessageBox.question(self, 'Restart the game?', "The Game will reset if you restart",
+                                   QMessageBox.Yes | QMessageBox.No)
+
+        if ret == QMessageBox.Yes:
+            self.mode = ""
+            self.qstn_number = 0
+            self.score = 0
+            self.answered_mode = []
+            self.selected_ans = ""
+            self.frame_correct.hide()
+            self.frame_4.hide()
+            self.frame_choose.hide()
+            self.txtedit_question.hide()
+            self.btn_cancel.hide()
+            self.btn_next_question.hide()
+            self.lbl_mode.setText("MODE:")
+            self.btn_average.show()
+            self.btn_hard.show()
+            self.btn_easy.show()
+            self.lbl_question_number.setText("QUESTION NUMBER: " + str(self.qstn_number))
+            self.lbl_score.setText("SCORE: " + str(self.score))
 if __name__ == "__main__":
     apps = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
