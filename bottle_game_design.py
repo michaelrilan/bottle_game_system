@@ -53,7 +53,7 @@ class Ui_MainWindow(object):
 "font: 75 10pt \"Tahoma\";\n"
 "")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("C:\\Users\\admin\\Desktop\\bottle_guessing_game\\bottle_game_system\\bottle_question_mark.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("..\\bottle_guessing_game\\bottle_game_system\\bottle_question_mark.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_easy.setIcon(icon)
         self.btn_easy.setIconSize(QtCore.QSize(30, 30))
         self.btn_easy.setObjectName("btn_easy")
@@ -196,7 +196,7 @@ class Ui_MainWindow(object):
         self.frame_choose_3.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_choose_3.setObjectName("frame_choose_3")
         self.lbl_mode = QtWidgets.QLabel(self.frame_choose_3)
-        self.lbl_mode.setGeometry(QtCore.QRect(190, 10, 141, 41))
+        self.lbl_mode.setGeometry(QtCore.QRect(190, 10, 301, 41))
         self.lbl_mode.setStyleSheet("font: 18pt \"Tahoma\";\n"
 "color: rgb(0, 0, 0);")
         self.lbl_mode.setObjectName("lbl_mode")
@@ -208,7 +208,7 @@ class Ui_MainWindow(object):
 "font: 75 10pt \"Tahoma\";\n"
 "")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("C:\\Users\\admin\\Desktop\\bottle_guessing_game\\bottle_game_system\\exit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("..\\bottle_guessing_game\\bottle_game_system\\exit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_exit.setIcon(icon1)
         self.btn_exit.setIconSize(QtCore.QSize(25, 25))
         self.btn_exit.setObjectName("btn_exit")
@@ -235,7 +235,7 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "GUESSING"))
         self.label_3.setText(_translate("MainWindow", "GAME"))
         self.btn_easy.setToolTip(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#4f4f4f;\">Click for an easy mode questions</span></p></body></html>"))
-        self.btn_easy.setText(_translate("MainWindow", "Bottle 1 (Easy-1 Pt)"))
+        self.btn_easy.setText(_translate("MainWindow", "Bottle 1 (Easy-1 Point)"))
         self.btn_average.setToolTip(_translate("MainWindow", "Click for an average mode questions"))
         self.btn_average.setText(_translate("MainWindow", "Bottle 2 (Average-2 Pts)"))
         self.btn_hard.setToolTip(_translate("MainWindow", "Click for an hard mode questions"))

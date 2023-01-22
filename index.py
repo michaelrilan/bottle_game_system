@@ -9,8 +9,6 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import QTimer
 import sys
 import os
-
-from collections import deque
 class newWindow1(Ui_MainWindow,QtWidgets.QMainWindow):
     def __init__(self):
         super(newWindow1, self).__init__()
@@ -238,12 +236,14 @@ class newWindow1(Ui_MainWindow,QtWidgets.QMainWindow):
                         self.lbl_mode.setText("MODE:")
                     elif ret == QMessageBox.No:
                         QMessageBox.about(self, "Thank You for Playing", "Overall Score: " + str(self.score))
+                        exit()
                 elif(len(self.answered_mode) == 3):
                      QMessageBox.about(self, "Conratulations", "Overall Score: " + str(self.score))
+                     exit()
             else:
                 self.selected_ans = ""
                 self.qstn_number += 1
-                self.lbl_question_number.setText("QUESTION NUMBER: " + str(self.qstn_number))
+                self.lbl_question_number.setText("QUESTION NUMBER: ")
                 self.txtedit_question.setText(self.mlist_easy[self.qstn_number-1][0])
                 self.chs_1.setText(self.easy_choices[self.qstn_number-1][0])
                 self.chs_2.setText(self.easy_choices[self.qstn_number-1][1])
@@ -281,14 +281,15 @@ class newWindow1(Ui_MainWindow,QtWidgets.QMainWindow):
                         self.lbl_mode.setText("MODE:")
                     elif ret == QMessageBox.No:
                         QMessageBox.about(self, "Thank You for Playing", "Overall Score: " + str(self.score))
+                        exit()
                 elif(len(self.answered_mode) == 3):
                      QMessageBox.about(self, "Conratulations", "Overall Score: " + str(self.score))
-                            
+                     exit()
             
             else:
                 self.selected_ans = ""
                 self.qstn_number += 1
-                self.lbl_question_number.setText("QUESTION NUMBER: " + str(self.qstn_number))
+                self.lbl_question_number.setText("QUESTION NUMBER: ")
                 self.txtedit_question.setText(self.mlist_average[self.qstn_number-1][0])
                 self.chs_1.setText(self.average_choices[self.qstn_number-1][0])
                 self.chs_2.setText(self.average_choices[self.qstn_number-1][1])
@@ -334,7 +335,7 @@ class newWindow1(Ui_MainWindow,QtWidgets.QMainWindow):
             else:
                 self.selected_ans = ""
                 self.qstn_number += 1
-                self.lbl_question_number.setText("QUESTION NUMBER: " + str(self.qstn_number))
+                self.lbl_question_number.setText("QUESTION NUMBER: ")
                 self.txtedit_question.setText(self.mlist_hard[self.qstn_number-1][0])
                 self.chs_1.setText(self.hard_choices[self.qstn_number-1][0])
                 self.chs_2.setText(self.hard_choices[self.qstn_number-1][1])
@@ -493,6 +494,16 @@ class newWindow1(Ui_MainWindow,QtWidgets.QMainWindow):
             self.mode = ""
             self.qstn_number = 0
             self.score = 0
+            self.chs_1.setDisabled(False)
+            self.chs_2.setDisabled(False)
+            self.chs_3.setDisabled(False)
+            self.btn_next.setDisabled(False)
+            self.chs_1.setAutoExclusive(False)
+            self.chs_2.setAutoExclusive(False)
+            self.chs_3.setAutoExclusive(False)
+            self.chs_1.setChecked(False)
+            self.chs_2.setChecked(False)
+            self.chs_3.setChecked(False)
             self.answered_mode = []
             self.selected_ans = ""
             self.frame_correct.hide()
@@ -505,7 +516,7 @@ class newWindow1(Ui_MainWindow,QtWidgets.QMainWindow):
             self.btn_average.show()
             self.btn_hard.show()
             self.btn_easy.show()
-            self.lbl_question_number.setText("QUESTION NUMBER: " + str(self.qstn_number))
+            self.lbl_question_number.setText("QUESTION NUMBER: ")
             self.lbl_score.setText("SCORE: " + str(self.score))
 if __name__ == "__main__":
     apps = QtWidgets.QApplication(sys.argv)
