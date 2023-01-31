@@ -243,7 +243,7 @@ class newWindow1(Ui_MainWindow,QtWidgets.QMainWindow):
             else:
                 self.selected_ans = ""
                 self.qstn_number += 1
-                self.lbl_question_number.setText("QUESTION NUMBER: ")
+                self.lbl_question_number.setText("QUESTION NUMBER: " + str(self.qstn_number))
                 self.txtedit_question.setText(self.mlist_easy[self.qstn_number-1][0])
                 self.chs_1.setText(self.easy_choices[self.qstn_number-1][0])
                 self.chs_2.setText(self.easy_choices[self.qstn_number-1][1])
@@ -289,7 +289,7 @@ class newWindow1(Ui_MainWindow,QtWidgets.QMainWindow):
             else:
                 self.selected_ans = ""
                 self.qstn_number += 1
-                self.lbl_question_number.setText("QUESTION NUMBER: ")
+                self.lbl_question_number.setText("QUESTION NUMBER: " + str(self.qstn_number))
                 self.txtedit_question.setText(self.mlist_average[self.qstn_number-1][0])
                 self.chs_1.setText(self.average_choices[self.qstn_number-1][0])
                 self.chs_2.setText(self.average_choices[self.qstn_number-1][1])
@@ -335,7 +335,7 @@ class newWindow1(Ui_MainWindow,QtWidgets.QMainWindow):
             else:
                 self.selected_ans = ""
                 self.qstn_number += 1
-                self.lbl_question_number.setText("QUESTION NUMBER: ")
+                self.lbl_question_number.setText("QUESTION NUMBER: " + str(self.qstn_number))
                 self.txtedit_question.setText(self.mlist_hard[self.qstn_number-1][0])
                 self.chs_1.setText(self.hard_choices[self.qstn_number-1][0])
                 self.chs_2.setText(self.hard_choices[self.qstn_number-1][1])
@@ -375,6 +375,7 @@ class newWindow1(Ui_MainWindow,QtWidgets.QMainWindow):
                 self.frame_correct.hide()
                 self.frame_4.show()
                 self.lbl_answer2.setText("Answer:" + get_correct_ans)
+                
 
         elif(self.mode == "HARD"):
             
@@ -389,6 +390,7 @@ class newWindow1(Ui_MainWindow,QtWidgets.QMainWindow):
                 self.frame_correct.hide()
                 self.frame_4.show()
                 self.lbl_answer2.setText("Answer:" + get_correct_ans)
+                
                 
         
 

@@ -53,7 +53,7 @@ class Ui_MainWindow(object):
 "font: 75 10pt \"Tahoma\";\n"
 "")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("..\\bottle_guessing_game\\bottle_game_system\\bottle_question_mark.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("\\bottle_guessing_game\\bottle_game_system\\bottle_question_mark.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_easy.setIcon(icon)
         self.btn_easy.setIconSize(QtCore.QSize(30, 30))
         self.btn_easy.setObjectName("btn_easy")
@@ -208,7 +208,7 @@ class Ui_MainWindow(object):
 "font: 75 10pt \"Tahoma\";\n"
 "")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("..\\bottle_guessing_game\\bottle_game_system\\exit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("\\bottle_game_system\\exit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_exit.setIcon(icon1)
         self.btn_exit.setIconSize(QtCore.QSize(25, 25))
         self.btn_exit.setObjectName("btn_exit")
